@@ -1,0 +1,31 @@
+<header class="header">
+  <button (click)="toggleSidebar()" class="header__toggle">Toggle sidebar</button>
+  <span>Travelling Salesman</span>
+</header>
+<!-- Container for sidebar(s) + page content -->
+<ng-sidebar-container>
+
+  <!-- A sidebar -->
+  <ng-sidebar [(opened)]="_opened">
+    <div class="container-fluid sidebar">
+      <a routerLink="locations"> List of locations</a>
+      <a style="margin-left:10px" routerLink="/add">Add Location</a>
+      <br/>
+      <router-outlet></router-outlet>
+    </div>
+  </ng-sidebar>
+
+  <!-- Page content -->
+  <div ng-sidebar-content id = "mapContainer" class="wide">
+    <app-esri-map>
+      <app-esri-map
+        [center]="mapCenter"
+        [basemap]="basemapType"
+        [zoom]="mapZoomLevel"
+        (mapLoaded)="mapLoadedEvent($event)">
+      </app-esri-map>
+    </app-esri-map>
+  </div>
+
+</ng-sidebar-container>
+

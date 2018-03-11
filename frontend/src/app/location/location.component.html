@@ -1,0 +1,22 @@
+<div class="col-md-6">
+  <h2> Location Details</h2>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th class="hidden">Id</th>
+      <th>Name</th>
+      <th>X</th>
+      <th>Y</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let location of locations">
+      <td class="hidden"></td>
+      <td>{{location.name}}</td>
+      <td>{{location.x}}</td>
+      <td>{{location.y}}</td>
+      <td><button class="btn btn-danger" (click)="deleteLocation(location)"> Delete location</button></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
