@@ -4,6 +4,7 @@ buildscript {
 	}
 	repositories {
 		mavenCentral()
+		jcenter()
 		maven {
 			url "https://plugins.gradle.org/m2/"
 		}
@@ -11,17 +12,23 @@ buildscript {
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
 		classpath "com.moowork.gradle:gradle-node-plugin:1.2.0"
+		classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.2'
 	}
 }
+
+
+
 
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'com.moowork.node'
+apply plugin: 'com.github.johnrengelman.shadow'
+apply plugin: 'application'
 
-
-group = 'com.travlelling_salesman'
+mainClassName = 'com.travelling_salesman.demo.TravellingSalesmanApplication'
+group = 'com.travelling_salesman'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
@@ -40,6 +47,7 @@ dependencies {
 
 node {
 	version = "9.8.0"
+    npmVersion = '5.7.1'
 	download = true
 	nodeModulesDir = file("frontend")
 }
@@ -65,3 +73,18 @@ build.mustRunAfter clean
 
 bootRun.dependsOn(buildClientDev)
 jar.dependsOn(buildClient)
+
+shadowJar {
+	baseName = 'travelling_salesman'
+	classifier = null
+	version = null
+	mergeServiceFiles()
+	exclude 'META-INF/*.DSA'
+	exclude 'META-INF/*.RSA'
+}
+
+jar {
+	manifest {
+		attributes 'Main-Class': mainClassName
+	}
+}

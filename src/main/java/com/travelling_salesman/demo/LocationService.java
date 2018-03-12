@@ -1,4 +1,4 @@
-package com.travlelling_salesman.demo;
+package com.travelling_salesman.demo;
 
 import java.util.List;
 

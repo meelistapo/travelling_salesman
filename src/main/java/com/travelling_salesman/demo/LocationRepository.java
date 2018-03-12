@@ -1,4 +1,4 @@
-package com.travlelling_salesman.demo;
+package com.travelling_salesman.demo;
 
 import org.springframework.data.repository.CrudRepository;
 
@@ -12,7 +12,4 @@ public interface LocationRepository extends CrudRepository<Location,Long> {
     List<Location> findAll();
 
     Optional<Location> findById(Long id);
-
-    Location save(Location location);
-
 }

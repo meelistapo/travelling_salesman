@@ -1,4 +1,4 @@
-package com.travlelling_salesman.demo;
+package com.travelling_salesman.demo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
