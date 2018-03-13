@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -jar build/libs/travelling_salesman.jar -Dspring.profiles.active=prod
+web: java $JAVA_OPTS -jar travelling_salesman/build/libs/travelling_salesman.jar -Dspring.profiles.active=prod
