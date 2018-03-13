@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -Dserver.port=$PORT -jar build/libs/travelling_salesman-0.0.1-SNAPSHOT.jar -Dspring.profiles.active=prod
+web: java $JAVA_OPTS -jar build/libs/travelling_salesman.jar -Dspring.profiles.active=prod
