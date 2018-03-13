@@ -69,11 +69,23 @@ task wrapper(type: Wrapper) {
 	gradleVersion = "4.6"
 }
 
+task stage(type: Copy, dependsOn: [clean, build]) {
+	from jar.archivePath
+	into project.rootDir
+	rename {
+		'app.jar'
+	}
+}
+stage.mustRunAfter(clean)
+
+clean << {
+	project.file('app.jar').delete()
+}
+
 build.mustRunAfter clean
 bootRun.dependsOn(buildClientDev)
 jar.dependsOn(buildClient)
 
 jar{
 	enabled = true
-	archiveName = "travelling_salesman.jar"
 }
