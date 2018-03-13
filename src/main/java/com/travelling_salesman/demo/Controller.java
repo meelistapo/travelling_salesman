@@ -6,26 +6,18 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
+@RequestMapping("/api")
 @RestController
-@RequestMapping({"/"})
 public class Controller {
 
     @Autowired
-    private final LocationRepository locationRepository;
-    private final LocationService locationService;
+    private LocationService locationService;
 
-    @Autowired
-    Controller(LocationRepository locationRepository, LocationService locationService) {
-        this.locationRepository = locationRepository;
-        this.locationService = locationService;
-
-    }
-    @GetMapping
+    @GetMapping("/locations")
     public List<Location> findAll(){
         return this.locationService.findAll();
     }
-
-    @PostMapping
+    @PostMapping("/add")
     public Location create(@RequestBody Location location){
         return locationService.create(location);
     }

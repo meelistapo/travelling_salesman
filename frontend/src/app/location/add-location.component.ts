@@ -16,7 +16,6 @@ export class AddLocationComponent {
   }
 
   createLocation(): void {
-    console.log("here")
     this.locationService.createLocation(this.location)
       .subscribe( data => {
         alert("Location created successfully.");

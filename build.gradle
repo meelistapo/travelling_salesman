@@ -43,6 +43,7 @@ dependencies {
 	runtime('org.springframework.boot:spring-boot-devtools')
 	runtime('org.postgresql:postgresql')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+	testCompile group: 'org.slf4j', name: 'slf4j-simple', version: '1.6.1'
 }
 
 node {
@@ -67,24 +68,12 @@ task buildClient(type:NpmTask, dependsOn:'npmInstall') {
 	description = "Compile client side folder for production"
 	args = ['run','build']
 }
-
 task stage(dependsOn: ['build', 'clean'])
+
+task wrapper(type: Wrapper) {
+	gradleVersion = "4.6"
+}
+
 build.mustRunAfter clean
-
 bootRun.dependsOn(buildClientDev)
-jar.dependsOn(buildClient)
-
-shadowJar {
-	baseName = 'travelling_salesman'
-	classifier = null
-	version = null
-	mergeServiceFiles()
-	exclude 'META-INF/*.DSA'
-	exclude 'META-INF/*.RSA'
-}
-
-jar {
-	manifest {
-		attributes 'Main-Class': mainClassName
-	}
-}
+bootJar.dependsOn(buildClient)

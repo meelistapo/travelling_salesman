@@ -16,7 +16,7 @@ export class AppComponent {
   mapLoadedEvent(status: boolean) {
     console.log('The map loaded: ' + status);
   }
-  public _opened: boolean = false;
+  public _opened: boolean = true;
 
   toggleSidebar() {
     this._opened = !this._opened;

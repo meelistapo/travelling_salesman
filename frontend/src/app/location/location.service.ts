@@ -13,10 +13,10 @@ export class LocationService {
 
   constructor(private http:HttpClient) {}
 
-  private locationUrl = 'http://localhost:8070/';
+  private locationUrl = 'http://localhost:8070/api';
 
   public getLocations() {
-    return this.http.get(this.locationUrl);
+    return this.http.get(this.locationUrl+ "/locations");
   }
 
   public deleteLocation(location) {
@@ -24,8 +24,7 @@ export class LocationService {
   }
 
   public createLocation(location) {
-    console.log(location)
-    return this.http.post(this.locationUrl, location);
+    return this.http.post(this.locationUrl+ "/add", location);
   }
 
 }
