@@ -69,24 +69,22 @@ task wrapper(type: Wrapper) {
 	gradleVersion = "4.6"
 }
 
-clean << {
-		project.file('app.jar').delete()
-	}
-
 build.mustRunAfter clean
 bootRun.dependsOn(buildClientDev)
 jar.dependsOn(buildClient)
 
+
+int i = 0
+String classpathVar = configurations.compile.collect { " libs/" + (i++==0?String.format("%0\$-50s", it.getName()):String.format("%0\$-62s", it.getName()))   }.join(" ")
 jar{
 	enabled = true
 	manifest {
 		attributes("Implementation-Title": "SIRIUS Workflow Executor",
 				"Implementation-Version": version,
-				'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
-				'Main-Class': 'com.travelling_salesman.demo.TravellingSalesmanApplication')
+				"Class-Path": classpathVar,
+				'Main-Class': mainClassName)
 	}
 }
 bootJar{
-	destinationDir project.file(project.rootDir)
 	archiveName = 'travelling_salesman.jar'
 }
