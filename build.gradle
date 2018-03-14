@@ -86,6 +86,7 @@ jar{
 	manifest {
 		attributes("Implementation-Title": "SIRIUS Workflow Executor",
 				"Implementation-Version": version,
-				"Class-Path": classpathVar )
+				"Class-Path": classpathVar,
+				'Main-Class': mainClassName)
 	}
 }
