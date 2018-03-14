@@ -41,6 +41,7 @@ dependencies {
 	runtime('org.springframework.boot:spring-boot-devtools')
 	runtime('org.postgresql:postgresql')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+	testCompile group: 'org.slf4j', name: 'slf4j-simple', version: '1.6.1'
 }
 
 node {
@@ -77,7 +78,7 @@ build.mustRunAfter clean
 bootRun.dependsOn(buildClientDev)
 jar.dependsOn(buildClient)
 
-int i = 0;
+int i = 0
 String classpathVar = configurations.compile.collect { " libs/" + (i++==0?String.format("%0\$-50s", it.getName()):String.format("%0\$-62s", it.getName()))   }.join(" ");
 jar{
 	enabled = true
