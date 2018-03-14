@@ -69,6 +69,10 @@ task wrapper(type: Wrapper) {
 	gradleVersion = "4.6"
 }
 
+clean << {
+		project.file('app.jar').delete()
+	}
+
 build.mustRunAfter clean
 bootRun.dependsOn(buildClientDev)
 jar.dependsOn(buildClient)
@@ -83,5 +87,6 @@ jar{
 	}
 }
 bootJar{
+	destinationDir project.file(project.rootDir)
 	archiveName = 'travelling_salesman.jar'
 }
